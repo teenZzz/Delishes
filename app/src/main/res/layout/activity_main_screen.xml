@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainScreen"
+    android:background="#f2f5f8"
     android:orientation="vertical"
-    android:background="#f2f5f8">
+    tools:context=".MainScreen">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp">
-        
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ico_menu"
-            android:layout_centerVertical="true"/>
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ico_add"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ico_menu" />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:background="#F1E9CE"
             android:padding="5dp"
-            android:background="#F1E9CE"/>
-        
+            android:src="@drawable/ico_add" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -42,16 +42,16 @@
             android:fontFamily="@font/almendra_bold"
             android:text="@string/mainscreenlogo"
             android:textSize="28sp" />
-        
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@id/maintitle"
-            android:background="@color/white"
             android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="20dp"
+            android:background="@color/white"
             android:elevation="8dp">
 
             <TextView
@@ -65,10 +65,10 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ico_search"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ico_search" />
 
 
         </RelativeLayout>
@@ -89,23 +89,24 @@
             <RelativeLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/card1"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
+                android:elevation="8dp">
 
                 <ImageView
                     android:layout_width="45dp"
                     android:layout_height="45dp"
-                    android:src="@drawable/ico_salad"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ico_salad" />
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="@string/saladtext"/>
+                android:text="@string/saladtext"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -117,9 +118,9 @@
             <RelativeLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/card2"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
+                android:elevation="8dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -128,12 +129,13 @@
                     android:src="@drawable/ico_snacks" />
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="@string/snackstext"/>
+                android:text="@string/snackstext"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -145,9 +147,9 @@
             <RelativeLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/card3"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
+                android:elevation="8dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -156,12 +158,13 @@
                     android:src="@drawable/ico_maindish" />
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="@string/hottext"/>
+                android:text="@string/hottext"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -173,9 +176,9 @@
             <RelativeLayout
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/card4"
-                android:elevation="8dp"
-                android:layout_margin="10dp">
+                android:elevation="8dp">
 
                 <ImageView
                     android:layout_width="45dp"
@@ -184,12 +187,13 @@
                     android:src="@drawable/ico_soup" />
 
             </RelativeLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                android:text="@string/souptext"/>
+                android:text="@string/souptext"
+                android:textAlignment="center" />
 
         </LinearLayout>
 

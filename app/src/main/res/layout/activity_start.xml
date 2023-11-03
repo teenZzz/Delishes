@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#403E3E"
+    android:background="#f2f5f8"
     tools:context=".StartActivity">
 
 
@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:background="#615E5E"
+        android:background="#b8d7f5"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +25,8 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:text="@string/start_header"
-            android:textColor="#C9C9C9"
+            android:text="Dishes"
+            android:textColor="#605687"
             android:textSize="30sp" />
 
     </LinearLayout>
@@ -35,69 +35,51 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="55dp"
         android:fontFamily="@font/roboto"
         android:text="@string/start_text"
-        android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="177dp"
-        android:layout_height="205dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/start_logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="229dp"
+        android:layout_width="match_parent"
         android:layout_height="193dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="1dp"
         android:fontFamily="@font/roboto"
+        android:gravity="center"
+        android:padding="10dp"
         android:text="@string/start_text2"
-        android:textColor="@color/white"
         android:textSize="22sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/filledButton"
+        style="@style/Widget.Material3.Button.ElevatedButton.Icon"
         android:layout_width="280dp"
         android:layout_height="70dp"
-        android:layout_marginTop="120dp"
-        android:backgroundTint="#F3F36D"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#b8d7f5"
         android:fontFamily="@font/roboto"
-        android:textColor="@color/black"
         android:text="@string/start_btn"
-        android:textSize="20sp"
+        android:textColor="#605687"
+        android:elevation="8dp"
+        android:textSize="22sp"
+        app:icon="@drawable/ico_confirm"
+        app:iconGravity="start"
+        app:iconSize="27dp"
+        app:iconTint="#605687"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/roboto"
-        android:text="Привет!"
-        android:textColor="@color/white"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

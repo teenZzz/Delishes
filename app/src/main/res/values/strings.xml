@@ -6,7 +6,7 @@
     <string name="text_view1">Категории</string>
     <string name="text_view2">Избранное</string>
     <string name="start_header">Dishes</string>
-    <string name="start_text">Вы установили приложение `Dishes`, которое представляет собой книгу рецептов.</string>
+    <string name="start_text">Привет, вы установили приложение, которое представляет собой книгу рецептов.</string>
     <string name="start_text2">Здесь вы найдете все подходящие для себя рецепты и сможете их сохранить.\n\nАвтор приложения: Артём Брешенков</string>
     <string name="start_btn">Начать</string>
     <string name="mainscreenlogo">Пора Готовить</string>
