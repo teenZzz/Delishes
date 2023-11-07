@@ -15,6 +15,8 @@
     <string name="snackstext">Закуски</string>
     <string name="hottext">Горячее</string>
     <string name="souptext">Супы</string>
+    <string name="allRecept">Рецепты</string>
+    <string name="viewAll">Смотреть все</string>
 
 
 </resources>
