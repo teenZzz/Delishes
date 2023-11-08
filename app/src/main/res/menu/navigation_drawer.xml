@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_item"
+        android:title="Узнать больше о приложении">
+        <menu>
+            <item
+                android:id="@+id/inbox_item_info"
+                android:icon="@drawable/ico_info"
+                android:title="Показать информационное окно"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/outbox_item"
+                android:icon="@drawable/ico_help"
+                android:title="Как пользоваться приложением?"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/favourites_item"
+                android:icon="@drawable/ico_maindish"
+                android:title="Еще что-то"
+                android:checkable="true"/>
+        </menu>
+    </item>
+
+</menu>
