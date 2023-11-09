@@ -15,38 +15,32 @@
         android:background="#f2f5f8"
         android:orientation="vertical">
 
-        <RelativeLayout
+
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:id="@+id/menubtn"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ico_menu" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
+                app:title="@string/mainscreenlogo"
+                app:menu="@menu/top_app_bar"/>
 
+        </com.google.android.material.appbar.AppBarLayout>
 
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/maintitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/almendra_bold"
-                android:text="@string/mainscreenlogo"
-                android:textSize="28sp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_below="@id/maintitle"
+
+                android:layout_alignParentTop="true"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"

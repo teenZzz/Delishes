@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -32,6 +33,8 @@ public class MainScreen extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        setSupportActionBar(binding.topAppBar);
+
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -54,18 +57,6 @@ public class MainScreen extends AppCompatActivity {
                 return true;
             }
         });
-
-        ImageView menuImageView = findViewById(R.id.menubtn);
-        menuImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Откройте Navigation Drawer
-                DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-                drawerLayout.openDrawer(GravityCompat.START); // Открывает Navigation Drawer с левой стороны
-            }
-        });
-
-
 
         SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE);
         boolean hasVisited = sp.getBoolean("hasVisited", false);
@@ -111,5 +102,22 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
+
+
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_app_bar, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.edit) { // Проверка, что была нажата нужная кнопка
+            DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
+            drawerLayout.openDrawer(GravityCompat.START); // Открывает Navigation Drawer с левой стороны
+            return true; // Возвращаем true, чтобы обработать событие нажатия
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
