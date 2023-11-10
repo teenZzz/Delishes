@@ -36,36 +36,18 @@
             android:layout_height="wrap_content">
 
 
-            <RelativeLayout
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:background="@drawable/search"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-
+                android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:elevation="8dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:text="@string/searchtext"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/ico_search" />
-
-
-            </RelativeLayout>
+                app:iconifiedByDefault="false"
+                app:queryHint="@string/searchtext" />
 
         </RelativeLayout>
 

@@ -2,6 +2,7 @@ package com.example.delishes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -35,6 +36,22 @@ public class MainScreen extends AppCompatActivity {
 
         setSupportActionBar(binding.topAppBar);
 
+        SearchView searchView = findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Обработка события поиска (нажатие Enter или кнопки поиска)
+                // Вызов метода для выполнения поиска
+                performSearch(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Обработка изменения текста в поле поиска
+                return false;
+            }
+        });
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -46,11 +63,7 @@ public class MainScreen extends AppCompatActivity {
                     Intent intent2 = new Intent(MainScreen.this, StartActivity.class);
                     startActivity(intent2);
                 } else if (id == R.id.outbox_item) {
-                    // Обработка нажатия на пункт "Пися"
-                    // Вставьте здесь код, который нужно выполнить при этом событии
-                } else if (id == R.id.favourites_item) {
-                    // Обработка нажатия на пункт "кака"
-                    // Вставьте здесь код, который нужно выполнить при этом событии
+
                 }
 
                 // Возвращаем true, чтобы указать, что событие было обработано
@@ -110,6 +123,7 @@ public class MainScreen extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.edit) { // Проверка, что была нажата нужная кнопка
@@ -118,6 +132,10 @@ public class MainScreen extends AppCompatActivity {
             return true; // Возвращаем true, чтобы обработать событие нажатия
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void performSearch(String query) {
+        // Ваш код для выполнения поиска
     }
 
 }

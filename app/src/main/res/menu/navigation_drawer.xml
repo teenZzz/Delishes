@@ -14,11 +14,7 @@
                 android:icon="@drawable/ico_help"
                 android:title="Как пользоваться приложением?"
                 android:checkable="true"/>
-            <item
-                android:id="@+id/favourites_item"
-                android:icon="@drawable/ico_maindish"
-                android:title="Еще что-то"
-                android:checkable="true"/>
+
         </menu>
     </item>
 
