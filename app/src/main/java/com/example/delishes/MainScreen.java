@@ -21,20 +21,20 @@ import com.google.android.material.navigation.NavigationView;
 
 public class MainScreen extends AppCompatActivity {
 
-    private ActivityMainScreenBinding binding;
+    private ActivityMainScreenBinding binding; //добавление binding
     private static final String MY_SETTINGS = "my_settings";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); //убираем часть экрана
         setContentView(R.layout.activity_main_screen);
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        setSupportActionBar(binding.topAppBar);
+        setSupportActionBar(binding.topAppBar); //для установки appbar
 
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -55,7 +55,7 @@ public class MainScreen extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) { //обработка кнопок в navigationview
                 int id = item.getItemId();
 
                 if (id == R.id.inbox_item_info) {
@@ -63,15 +63,17 @@ public class MainScreen extends AppCompatActivity {
                     Intent intent2 = new Intent(MainScreen.this, StartActivity.class);
                     startActivity(intent2);
                 } else if (id == R.id.outbox_item) {
+                    Intent intent3 = new Intent(MainScreen.this, InfoActivity.class);
+                    startActivity(intent3);
 
                 }
 
-                // Возвращаем true, чтобы указать, что событие было обработано
+
                 return true;
             }
         });
 
-        SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE); //Для показа экрана, который при первом запуске
         boolean hasVisited = sp.getBoolean("hasVisited", false);
 
         if(!hasVisited){
@@ -84,6 +86,8 @@ public class MainScreen extends AppCompatActivity {
 
         Intent intent = new Intent(this, CategoriesActivity.class);
         Intent intent1 = new Intent(this, AllReceptActivity.class);
+        Intent intent4 = new Intent(this, loveReceptActivity.class);
+        //Обработчики кнопок
         binding.saladCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,6 +116,13 @@ public class MainScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intent1);
+            }
+        });
+
+        binding.viewAllBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(intent4);
             }
         });
 

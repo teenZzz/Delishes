@@ -33,6 +33,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content">
 
 
@@ -45,7 +46,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginRight="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 app:iconifiedByDefault="false"
                 app:queryHint="@string/searchtext" />
 
@@ -181,44 +182,87 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="30dp"
-            android:padding="20dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/almendra"
-                    android:text="@string/allRecept"
-                    android:textColor="#272727"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/viewAll"
-                    android:id="@+id/viewAll_btn"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"/>
+                <!-- First LinearLayout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
+                    android:padding="20dp">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/almendra"
+                            android:text="@string/allRecept"
+                            android:textColor="#272727"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/viewAll"
+                            android:id="@+id/viewAll_btn"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_height="match_parent"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="200dp"/>
+                </LinearLayout>
 
+                <!-- Second LinearLayout -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp"
+                    android:padding="20dp">
 
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/almendra"
+                            android:text="@string/loveRecept"
+                            android:textColor="#272727"
+                            android:textSize="20sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/viewAll"
+                            android:id="@+id/viewAll_btn2"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"/>
+                    </RelativeLayout>
 
-        </LinearLayout>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_height="200dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
 
 
     </LinearLayout>

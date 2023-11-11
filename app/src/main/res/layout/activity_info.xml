@@ -7,7 +7,6 @@
     android:background="#f2f5f8"
     tools:context=".StartActivity">
 
-
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
@@ -25,7 +24,7 @@
             android:layout_marginTop="25dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
-            android:text="Dishes"
+            android:text="Как пользоваться?"
             android:textColor="#605687"
             android:textSize="30sp" />
 
@@ -76,17 +75,17 @@
             android:backgroundTint="#b8d7f5"
             android:elevation="8dp"
             android:fontFamily="@font/roboto"
-            android:text="@string/start_btn"
-            android:layout_gravity="center"
-            app:icon="@drawable/ico_confirm"
+            android:text="@string/acceptBtn"
             android:textColor="#605687"
             android:textSize="22sp"
             app:iconGravity="start"
             app:iconSize="27dp"
+            android:layout_gravity="center"
             app:iconTint="#605687"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
     </LinearLayout>
 
 

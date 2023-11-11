@@ -17,6 +17,8 @@
     <string name="souptext">Супы</string>
     <string name="allRecept">Рецепты</string>
     <string name="viewAll">Смотреть все</string>
+    <string name="loveRecept">Избранное</string>
+    <string name="acceptBtn">Понятно!</string>
 
 
 </resources>
