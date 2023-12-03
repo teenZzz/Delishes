@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "759515450262",
+    "project_id": "recepts-7c127",
+    "storage_bucket": "recepts-7c127.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759515450262:android:3946dc8b6ec500601d6bb7",
+        "android_client_info": {
+          "package_name": "com.example.delishes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwOlF0BPK6HWZrwthGUblFiJRIwqztJ8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
