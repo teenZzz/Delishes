@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <!-- First LinearLayout -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
@@ -226,7 +226,7 @@
                         android:layout_height="200dp"/>
                 </LinearLayout>
 
-                <!-- Second LinearLayout -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
@@ -257,6 +257,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_marginTop="5dp"
+                        android:id="@+id/loverecept"
                         android:layout_height="200dp"/>
                 </LinearLayout>
 

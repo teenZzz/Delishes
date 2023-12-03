@@ -5,17 +5,24 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+
 import java.util.List;
 
-public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
-    private List<String> data; // Замените String на тип данных ваших элементов
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
-    public RecycAdapter(List<String> data) {
+
+public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
+    private List<RecipeItem> data; // Используйте модель RecipeItem
+
+    public RecycAdapter(List<RecipeItem> data) {
         this.data = data;
     }
 
@@ -33,8 +40,15 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        String item = data.get(position);
-        holder.textView.setText(item);
+        RecipeItem item = data.get(position);
+
+        // Установите текст
+        holder.textView.setText(item.getText());
+
+        // Загрузите изображение из URL с использованием Picasso
+        Picasso.get().load(item.getImageUrl())
+                .transform(new RoundedCornersTransformation(10, 10))
+                .into(holder.imageView);
     }
 
     @Override
@@ -43,11 +57,13 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView; // Замените TextView на вид вашего элемента
+        public TextView textView;
+        public ImageView imageView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.recepttext); // Замените itemTextView на ID вашего TextView
+            textView = itemView.findViewById(R.id.recepttext);
+            imageView = itemView.findViewById(R.id.imgrecept);
         }
     }
 }

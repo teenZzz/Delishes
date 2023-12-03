@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,6 +21,9 @@ import android.widget.ImageView;
 
 import com.example.delishes.databinding.ActivityMainScreenBinding;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,34 +33,45 @@ public class MainScreen extends AppCompatActivity {
     private ActivityMainScreenBinding binding; //добавление binding
     private static final String MY_SETTINGS = "my_settings";
 
+    private RecycAdapter adapter;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN); //убираем часть экрана
-        setContentView(R.layout.activity_main_screen);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
+        setSupportActionBar(binding.topAppBar);
 
-        RecyclerView recyclerView = findViewById(R.id.allrecept); // Замените yourRecyclerView на ID вашего RecyclerView
+        RecyclerView recyclerView = binding.allrecept;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
-
-        List<String> dataList = new ArrayList<>();
-        dataList.add("Элемент 1");
-        dataList.add("Элемент 2");
-
-
-
-        RecycAdapter adapter = new RecycAdapter(dataList);
+        List<RecipeItem> recipeItems = new ArrayList<>();
+        adapter = new RecycAdapter(recipeItems);
         recyclerView.setAdapter(adapter);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference recipesCollection = db.collection("Recepts");
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        setSupportActionBar(binding.topAppBar); //для установки appbar
+        recipesCollection.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    String text = document.getString("Text");
+                    String imageUrl = document.getString("Image");
+                    Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
+                    recipeItems.add(new RecipeItem(text, imageUrl));
+                }
 
+                // Уведомляем адаптер об изменениях после получения данных
+                adapter.notifyDataSetChanged();
+            } else {
+                Log.e("TAG", "Error getting documents: ", task.getException());
+            }
+        });
 
+        setSupportActionBar(binding.topAppBar);
 
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
