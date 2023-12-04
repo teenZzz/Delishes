@@ -2,17 +2,18 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="330dp"
+    android:layout_height="100dp"
+    android:layout_gravity="center|top"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
+    android:backgroundTint="#f2f5f8"
     app:cardElevation="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#d4cbe5"
         android:padding="16dp">
 
         <!-- Изображение рецепта -->
@@ -20,22 +21,29 @@
             android:id="@+id/imgrecept"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:elevation="16dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/googleg_standard_color_18"
-            android:background="@drawable/circular_background"/>
+            android:src="@drawable/googleg_standard_color_18"/>
 
         <!-- Текст рецепта -->
         <TextView
             android:id="@+id/recepttext"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Название рецепта"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:layout_gravity="center"
             android:textColor="#272727"
             android:layout_marginStart="16dp"/>
 
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_margin="5dp"
+        android:layout_gravity="top|right"
+
+        android:src="@drawable/favorite_ico" />
+
 </androidx.cardview.widget.CardView>

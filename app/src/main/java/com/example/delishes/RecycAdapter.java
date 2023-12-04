@@ -47,7 +47,9 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
 
         // Загрузите изображение из URL с использованием Picasso
         Picasso.get().load(item.getImageUrl())
-                .transform(new RoundedCornersTransformation(10, 10))
+                .transform(new RoundedCornersTransformation(25, 10))
+                .resize(125, 125)
+                .centerCrop()
                 .into(holder.imageView);
     }
 
