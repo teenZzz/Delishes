@@ -49,7 +49,9 @@ public class AllReceptActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     String text = document.getString("Text");
                     String imageUrl = document.getString("Image");
-                    String receptText = document.getString("ReceptText"); // Добавьте это
+                    String receptText = document.getString("ReceptText");
+
+                    receptText = receptText.replace("\\n", System.getProperty("line.separator"));
 
                     Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
                     recipeItems.add(new RecipeItem(text, imageUrl, receptText));

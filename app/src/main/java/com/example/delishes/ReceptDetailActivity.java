@@ -48,11 +48,12 @@ public class ReceptDetailActivity extends AppCompatActivity {
 
 
         Intent intent2 = new Intent(this, MainScreen.class);
-        binding.backbtn.setOnClickListener(new View.OnClickListener() {
+        binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent2);
             }
         });
+
     }
 }

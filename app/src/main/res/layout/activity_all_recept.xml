@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#dde0eb"
         android:padding="20dp">
 
         <ImageView
@@ -20,13 +21,6 @@
             android:layout_centerVertical="true"
             android:src="@drawable/back_ico" />
 
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +29,10 @@
             android:text="Рецепты"
             android:textSize="28sp" />
 
+
     </RelativeLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
