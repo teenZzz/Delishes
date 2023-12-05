@@ -49,8 +49,10 @@ public class AllReceptActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     String text = document.getString("Text");
                     String imageUrl = document.getString("Image");
+                    String receptText = document.getString("ReceptText"); // Добавьте это
+
                     Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
-                    recipeItems.add(new RecipeItem(text, imageUrl));
+                    recipeItems.add(new RecipeItem(text, imageUrl, receptText));
                 }
 
                 // Уведомляем адаптер об изменениях после получения данных
@@ -58,6 +60,18 @@ public class AllReceptActivity extends AppCompatActivity {
             } else {
                 Log.e("TAG", "Error getting documents: ", task.getException());
             }
+        });
+
+        adapter.setOnItemClickListener(position -> {
+            // Обработка нажатия
+            RecipeItem selectedRecipe = recipeItems.get(position);
+
+            // Создание Intent для перехода на ReceptDetailActivity и передача данных
+            Intent intent = new Intent(AllReceptActivity.this, ReceptDetailActivity.class);
+            intent.putExtra("text", selectedRecipe.getText());
+            intent.putExtra("imageUrl", selectedRecipe.getImageUrl());
+            intent.putExtra("receptText", selectedRecipe.getReceptText());
+            startActivity(intent);
         });
 
         Intent intent = new Intent(this, MainScreen.class);

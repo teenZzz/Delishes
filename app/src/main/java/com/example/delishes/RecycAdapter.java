@@ -20,10 +20,20 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 
 public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
+
     private List<RecipeItem> data; // Используйте модель RecipeItem
+    private OnItemClickListener onItemClickListener;
 
     public RecycAdapter(List<RecipeItem> data) {
         this.data = data;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
     }
 
     @NonNull
@@ -51,6 +61,15 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
                 .resize(125, 125)
                 .centerCrop()
                 .into(holder.imageView);
+
+        // Здесь вы можете получить ReceptText, но не отображать его в ячейке
+        String receptText = item.getReceptText();
+
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(position);
+            }
+        });
     }
 
     @Override
