@@ -72,9 +72,9 @@
                     android:elevation="8dp">
 
                     <ImageView
+                        android:id="@+id/saladCat"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:id="@+id/saladCat"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ico_salad" />
 
@@ -102,9 +102,9 @@
                     android:elevation="8dp">
 
                     <ImageView
+                        android:id="@+id/delishCat"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:id="@+id/delishCat"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ico_snacks" />
 
@@ -132,9 +132,9 @@
                     android:elevation="8dp">
 
                     <ImageView
+                        android:id="@+id/hotCat"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:id="@+id/hotCat"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ico_maindish" />
 
@@ -162,9 +162,9 @@
                     android:elevation="8dp">
 
                     <ImageView
+                        android:id="@+id/soupCat"
                         android:layout_width="45dp"
                         android:layout_height="45dp"
-                        android:id="@+id/soupCat"
                         android:layout_centerInParent="true"
                         android:src="@drawable/ico_soup" />
 

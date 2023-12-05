@@ -41,17 +41,14 @@ public class MainScreen extends AppCompatActivity {
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
         setSupportActionBar(binding.topAppBar);
 
         RecyclerView recyclerView = binding.allrecept;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
         List<RecipeItem> recipeItems = new ArrayList<>();
         adapter = new RecycAdapter(recipeItems);
         recyclerView.setAdapter(adapter);
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference recipesCollection = db.collection("Recepts");
 
@@ -86,6 +83,7 @@ public class MainScreen extends AppCompatActivity {
             intent.putExtra("receptText", selectedRecipe.getReceptText());
             startActivity(intent);
         });
+
 
         setSupportActionBar(binding.topAppBar);
 
@@ -126,10 +124,10 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
+
         SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE); //Для показа экрана, который при первом запуске
         boolean hasVisited = sp.getBoolean("hasVisited", false);
-
-        if(!hasVisited){
+        if(!hasVisited){ //показ окна приветствия
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             SharedPreferences.Editor editor = sp.edit();
@@ -137,41 +135,53 @@ public class MainScreen extends AppCompatActivity {
             editor.apply();
         }
 
-        Intent intent = new Intent(this, CategoriesActivity.class);
         Intent intent1 = new Intent(this, AllReceptActivity.class);
         Intent intent4 = new Intent(this, loveReceptActivity.class);
+
         //Обработчики кнопок
         binding.saladCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainScreen.this, CategoriesActivity.class);
+                intent.putExtra("text", "Салаты");
+                intent.putExtra("categories", 1);
                 startActivity(intent);
             }
         });
         binding.delishCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainScreen.this, CategoriesActivity.class);
+                intent.putExtra("text", "Закуски");
+                intent.putExtra("categories", 2);
                 startActivity(intent);
             }
         });
         binding.hotCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainScreen.this, CategoriesActivity.class);
+                intent.putExtra("text", "Горячее");
+                intent.putExtra("categories", 3);
                 startActivity(intent);
             }
         });
         binding.soupCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(MainScreen.this, CategoriesActivity.class);
+                intent.putExtra("text", "Супы");
+                intent.putExtra("categories", 4);
                 startActivity(intent);
             }
         });
+
         binding.viewAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent1);
             }
         });
-
         binding.viewAllBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -179,9 +189,8 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
-
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
@@ -199,7 +208,7 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-        // Ваш код для выполнения поиска
+        //код для выполнения поиска
     }
 
 }
