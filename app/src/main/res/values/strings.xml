@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Delishes</string>
+    <string name="app_name">Dishes</string>
     <string name="text_label1">Главная</string>
     <string name="text_label2">Поиск</string>
     <string name="text_header1">Рецепты</string>
@@ -19,6 +19,9 @@
     <string name="viewAll">Смотреть все</string>
     <string name="loveRecept">Избранное</string>
     <string name="acceptBtn">Понятно!</string>
+    <string name="info_text">В данном приложении вы можете найти нужное вам блюдо, которое будет иметь полный рецепт для его приготовления.</string>
+    <string name="info_text2">Вы можете выполнить поиск по нужному блюду.\nТак же вы можете добавить понравившийся рецепт в Избранное.</string>
+
 
 
 </resources>

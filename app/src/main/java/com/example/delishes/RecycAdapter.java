@@ -21,7 +21,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
 
-    private List<RecipeItem> data; // Используйте модель RecipeItem
+    private List<RecipeItem> data;
     private OnItemClickListener onItemClickListener;
 
     public RecycAdapter(List<RecipeItem> data) {
@@ -35,6 +35,11 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.onItemClickListener = listener;
     }
+    public void setData(List<RecipeItem> newData) {
+        data.clear();
+        data.addAll(newData);
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
@@ -42,7 +47,7 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Замените R.layout.item_layout на ваш макет элемента
+
         View itemView = inflater.inflate(R.layout.receptview, parent, false);
 
         return new ViewHolder(itemView);
@@ -52,17 +57,17 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         RecipeItem item = data.get(position);
 
-        // Установите текст
+
         holder.textView.setText(item.getText());
 
-        // Загрузите изображение из URL с использованием Picasso
+
         Picasso.get().load(item.getImageUrl())
                 .transform(new RoundedCornersTransformation(25, 10))
                 .resize(125, 125)
                 .centerCrop()
                 .into(holder.imageView);
 
-        // Здесь вы можете получить ReceptText, но не отображать его в ячейке
+
         String receptText = item.getReceptText();
 
         holder.itemView.setOnClickListener(view -> {
@@ -86,5 +91,6 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
             textView = itemView.findViewById(R.id.recepttext);
             imageView = itemView.findViewById(R.id.imgrecept);
         }
+
     }
 }

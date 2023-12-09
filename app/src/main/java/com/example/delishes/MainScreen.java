@@ -35,6 +35,13 @@ public class MainScreen extends AppCompatActivity {
 
     private RecycAdapter adapter;
 
+    List<RecipeItem> recipeItems = new ArrayList<>();
+
+    private List<RecipeItem> originalRecipeItems = new ArrayList<>();
+
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -42,6 +49,8 @@ public class MainScreen extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         setSupportActionBar(binding.topAppBar);
+
+
 
         RecyclerView recyclerView = binding.allrecept;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -62,10 +71,12 @@ public class MainScreen extends AppCompatActivity {
                     receptText = receptText.replace("\\n", System.getProperty("line.separator"));
 
                     Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
-                    recipeItems.add(new RecipeItem(text, imageUrl, receptText));
+
+                    RecipeItem recipeItem = new RecipeItem(text, imageUrl, receptText);
+                    recipeItems.add(recipeItem);
+                    originalRecipeItems.add(recipeItem);
                 }
 
-                // Уведомляем адаптер об изменениях после получения данных
                 adapter.notifyDataSetChanged();
             } else {
                 Log.e("TAG", "Error getting documents: ", task.getException());
@@ -73,10 +84,8 @@ public class MainScreen extends AppCompatActivity {
         });
 
         adapter.setOnItemClickListener(position -> {
-            // Обработка нажатия
             RecipeItem selectedRecipe = recipeItems.get(position);
 
-            // Создание Intent для перехода на ReceptDetailActivity и передача данных
             Intent intent = new Intent(MainScreen.this, ReceptDetailActivity.class);
             intent.putExtra("text", selectedRecipe.getText());
             intent.putExtra("imageUrl", selectedRecipe.getImageUrl());
@@ -84,25 +93,24 @@ public class MainScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-        setSupportActionBar(binding.topAppBar);
-
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Обработка события поиска (нажатие Enter или кнопки поиска)
-                // Вызов метода для выполнения поиска
-                performSearch(query);
-                return true;
+                return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Обработка изменения текста в поле поиска
-                return false;
+                performSearch(newText);
+                return true;
             }
         });
+
+
+        setSupportActionBar(binding.topAppBar);
+
+
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -207,8 +215,18 @@ public class MainScreen extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void performSearch(String query) {
-        //код для выполнения поиска
+        List<RecipeItem> filteredList = new ArrayList<>();
+
+        for (RecipeItem recipe : originalRecipeItems) {
+            if (recipe.getText().toLowerCase().contains(query.toLowerCase())) {
+                filteredList.add(recipe);
+            }
+        }
+
+        adapter.setData(filteredList);
     }
+
 
 }
