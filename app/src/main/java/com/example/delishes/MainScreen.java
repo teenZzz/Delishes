@@ -32,17 +32,11 @@ public class MainScreen extends AppCompatActivity {
 
     private ActivityMainScreenBinding binding; //добавление binding
     private static final String MY_SETTINGS = "my_settings";
-
     private RecycAdapter adapter;
-
-    List<RecipeItem> recipeItems = new ArrayList<>();
-
     private List<RecipeItem> originalRecipeItems = new ArrayList<>();
 
-
-
-
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
@@ -50,14 +44,13 @@ public class MainScreen extends AppCompatActivity {
         setContentView(view);
         setSupportActionBar(binding.topAppBar);
 
-
-
         RecyclerView recyclerView = binding.allrecept;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         List<RecipeItem> recipeItems = new ArrayList<>();
         adapter = new RecycAdapter(recipeItems);
         recyclerView.setAdapter(adapter);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference recipesCollection = db.collection("Recepts");
 
@@ -107,9 +100,7 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
-
         setSupportActionBar(binding.topAppBar);
-
 
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -131,7 +122,6 @@ public class MainScreen extends AppCompatActivity {
                 return true;
             }
         });
-
 
         SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE); //Для показа экрана, который при первом запуске
         boolean hasVisited = sp.getBoolean("hasVisited", false);
@@ -227,6 +217,5 @@ public class MainScreen extends AppCompatActivity {
 
         adapter.setData(filteredList);
     }
-
 
 }
