@@ -38,12 +38,13 @@
 
     </LinearLayout>
 
-    <ImageView
+    <ImageButton
+        android:id="@+id/like_btn"
         android:layout_width="25dp"
         android:layout_height="25dp"
+        android:background="#dde0eb"
         android:layout_margin="5dp"
         android:layout_gravity="top|right"
-
         android:src="@drawable/favorite_ico" />
 
 </androidx.cardview.widget.CardView>

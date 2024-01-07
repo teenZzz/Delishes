@@ -30,13 +30,16 @@ import java.util.List;
 
 public class MainScreen extends AppCompatActivity {
 
-    private ActivityMainScreenBinding binding; //добавление binding
+    private ActivityMainScreenBinding binding;
     private static final String MY_SETTINGS = "my_settings";
     private RecycAdapter adapter;
     private List<RecipeItem> originalRecipeItems = new ArrayList<>();
+    private List<RecipeItem> likedRecipes = new ArrayList<>();
+
+    // Добавьте ваш адаптер для второго RecyclerView
+    private RecycAdapter loveReceptAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
@@ -50,6 +53,14 @@ public class MainScreen extends AppCompatActivity {
         List<RecipeItem> recipeItems = new ArrayList<>();
         adapter = new RecycAdapter(recipeItems);
         recyclerView.setAdapter(adapter);
+
+        RecyclerView loveReceptRecyclerView = binding.loverecept; // Замените на ваш фактический идентификатор
+        LinearLayoutManager loveReceptLayoutManager = new LinearLayoutManager(this);
+        loveReceptRecyclerView.setLayoutManager(loveReceptLayoutManager);
+
+        // Инициализация адаптера для второго RecyclerView
+        loveReceptAdapter = new RecycAdapter(new ArrayList<>());
+        loveReceptRecyclerView.setAdapter(loveReceptAdapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference recipesCollection = db.collection("Recepts");
@@ -86,6 +97,19 @@ public class MainScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
+        adapter.setOnLikeButtonClickListener(new RecycAdapter.OnLikeButtonClickListener() {
+            @Override
+            public void onLikeButtonClick(int position, boolean isLiked) {
+                RecipeItem recipeItem = recipeItems.get(position);
+
+                if (isLiked) {
+                    addToSecondRecyclerView(recipeItem);
+                } else {
+                    removeFromSecondRecyclerView(recipeItem);
+                }
+            }
+        });
+
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -105,27 +129,24 @@ public class MainScreen extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) { //обработка кнопок в navigationview
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
 
                 if (id == R.id.inbox_item_info) {
-                    // Обработка нажатия на пункт "Показать информационное окно"
                     Intent intent2 = new Intent(MainScreen.this, StartActivity.class);
                     startActivity(intent2);
                 } else if (id == R.id.outbox_item) {
                     Intent intent3 = new Intent(MainScreen.this, InfoActivity.class);
                     startActivity(intent3);
-
                 }
-
 
                 return true;
             }
         });
 
-        SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE); //Для показа экрана, который при первом запуске
+        SharedPreferences sp = getSharedPreferences(MY_SETTINGS, Context.MODE_PRIVATE);
         boolean hasVisited = sp.getBoolean("hasVisited", false);
-        if(!hasVisited){ //показ окна приветствия
+        if(!hasVisited){
             Intent intent = new Intent(this, StartActivity.class);
             startActivity(intent);
             SharedPreferences.Editor editor = sp.edit();
@@ -136,7 +157,6 @@ public class MainScreen extends AppCompatActivity {
         Intent intent1 = new Intent(this, AllReceptActivity.class);
         Intent intent4 = new Intent(this, loveReceptActivity.class);
 
-        //Обработчики кнопок
         binding.saladCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,22 +209,22 @@ public class MainScreen extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_app_bar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.edit) { // Проверка, что была нажата нужная кнопка
-            DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
-            drawerLayout.openDrawer(GravityCompat.START); // Открывает Navigation Drawer с левой стороны
-            return true; // Возвращаем true, чтобы обработать событие нажатия
+    private void addToSecondRecyclerView(RecipeItem recipeItem) {
+        if (!likedRecipes.contains(recipeItem)) {
+            likedRecipes.add(recipeItem);
+            updateSecondRecyclerView();
         }
-        return super.onOptionsItemSelected(item);
     }
 
+    private void removeFromSecondRecyclerView(RecipeItem recipeItem) {
+        likedRecipes.remove(recipeItem);
+        updateSecondRecyclerView();
+    }
+
+    private void updateSecondRecyclerView() {
+        loveReceptAdapter.setData(likedRecipes);
+        loveReceptAdapter.notifyDataSetChanged();
+    }
 
     private void performSearch(String query) {
         List<RecipeItem> filteredList = new ArrayList<>();
@@ -217,5 +237,4 @@ public class MainScreen extends AppCompatActivity {
 
         adapter.setData(filteredList);
     }
-
 }
