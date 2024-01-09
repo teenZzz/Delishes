@@ -78,7 +78,7 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
         if (item.isLiked()) {
             holder.likeButton.setColorFilter(Color.RED);
         } else {
-            holder.likeButton.setColorFilter(null);
+            holder.likeButton.clearColorFilter(); // Очищаем цвет фильтра
         }
 
         holder.itemView.setOnClickListener(view -> {
@@ -91,6 +91,8 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
             if (onLikeButtonClickListener != null) {
                 onLikeButtonClickListener.onLikeButtonClick(position, !item.isLiked());
             }
+
+            notifyItemChanged(position);
         });
     }
 
