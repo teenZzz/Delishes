@@ -25,7 +25,6 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
 
     private List<RecipeItem> data;
-    private List<RecipeItem> likedRecipes = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
     private OnLikeButtonClickListener onLikeButtonClickListener;
 
@@ -52,7 +51,6 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
     public void setData(List<RecipeItem> newData) {
         data.clear();
         data.addAll(newData);
-        likedRecipes.clear();
         notifyDataSetChanged();
     }
 
@@ -77,7 +75,7 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
                 .centerCrop()
                 .into(holder.imageView);
 
-        if (isRecipeLiked(item)) {
+        if (item.isLiked()) {
             holder.likeButton.setColorFilter(Color.RED);
         } else {
             holder.likeButton.setColorFilter(null);
@@ -90,28 +88,10 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
         });
 
         holder.likeButton.setOnClickListener(view -> {
-            RecipeItem recipeItem = data.get(position);
-
-            if (!likedRecipes.contains(recipeItem)) {
-                likedRecipes.add(recipeItem);
-                if (onLikeButtonClickListener != null) {
-                    onLikeButtonClickListener.onLikeButtonClick(position, true);
-                }
-                holder.likeButton.setColorFilter(Color.RED);
-            } else {
-                likedRecipes.remove(recipeItem);
-                if (onLikeButtonClickListener != null) {
-                    onLikeButtonClickListener.onLikeButtonClick(position, false);
-                }
-                holder.likeButton.setColorFilter(null);
+            if (onLikeButtonClickListener != null) {
+                onLikeButtonClickListener.onLikeButtonClick(position, !item.isLiked());
             }
-
-            notifyDataSetChanged();
         });
-    }
-
-    private boolean isRecipeLiked(RecipeItem recipeItem) {
-        return likedRecipes.contains(recipeItem);
     }
 
     @Override

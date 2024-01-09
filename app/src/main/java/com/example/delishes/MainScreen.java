@@ -26,7 +26,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainScreen extends AppCompatActivity {
 
@@ -35,8 +37,6 @@ public class MainScreen extends AppCompatActivity {
     private RecycAdapter adapter;
     private List<RecipeItem> originalRecipeItems = new ArrayList<>();
     private List<RecipeItem> likedRecipes = new ArrayList<>();
-
-    // Добавьте ваш адаптер для второго RecyclerView
     private RecycAdapter loveReceptAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +54,9 @@ public class MainScreen extends AppCompatActivity {
         adapter = new RecycAdapter(recipeItems);
         recyclerView.setAdapter(adapter);
 
-        RecyclerView loveReceptRecyclerView = binding.loverecept; // Замените на ваш фактический идентификатор
+        RecyclerView loveReceptRecyclerView = binding.loverecept;
         LinearLayoutManager loveReceptLayoutManager = new LinearLayoutManager(this);
         loveReceptRecyclerView.setLayoutManager(loveReceptLayoutManager);
-
-        // Инициализация адаптера для второго RecyclerView
         loveReceptAdapter = new RecycAdapter(new ArrayList<>());
         loveReceptRecyclerView.setAdapter(loveReceptAdapter);
 
@@ -71,17 +69,26 @@ public class MainScreen extends AppCompatActivity {
                     String text = document.getString("Text");
                     String imageUrl = document.getString("Image");
                     String receptText = document.getString("ReceptText");
+                    String documentId = document.getId();
 
                     receptText = receptText.replace("\\n", System.getProperty("line.separator"));
 
                     Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
 
                     RecipeItem recipeItem = new RecipeItem(text, imageUrl, receptText);
+                    recipeItem.setDocumentId(documentId);
+                    recipeItem.setLiked(Boolean.TRUE.equals(document.getBoolean("IsLiked")));
+
                     recipeItems.add(recipeItem);
                     originalRecipeItems.add(recipeItem);
+
+                    if (recipeItem.isLiked()) {
+                        likedRecipes.add(recipeItem);
+                    }
                 }
 
                 adapter.notifyDataSetChanged();
+                updateSecondRecyclerView(); // Обновить второй RecyclerView после загрузки данных
             } else {
                 Log.e("TAG", "Error getting documents: ", task.getException());
             }
@@ -97,18 +104,21 @@ public class MainScreen extends AppCompatActivity {
             startActivity(intent);
         });
 
-        adapter.setOnLikeButtonClickListener(new RecycAdapter.OnLikeButtonClickListener() {
-            @Override
-            public void onLikeButtonClick(int position, boolean isLiked) {
-                RecipeItem recipeItem = recipeItems.get(position);
+        adapter.setOnLikeButtonClickListener((position, isLiked) -> {
+            RecipeItem recipeItem = recipeItems.get(position);
 
-                if (isLiked) {
-                    addToSecondRecyclerView(recipeItem);
-                } else {
-                    removeFromSecondRecyclerView(recipeItem);
-                }
+            // Обновите значение в Firestore
+            updateIsLikedInFirestore(recipeItem, isLiked);
+
+            // Обновите состояние списка и второго RecyclerView
+            recipeItem.setLiked(isLiked);
+            if (isLiked) {
+                addToSecondRecyclerView(recipeItem);
+            } else {
+                removeFromSecondRecyclerView(recipeItem);
             }
         });
+
 
         SearchView searchView = findViewById(R.id.searchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -207,6 +217,19 @@ public class MainScreen extends AppCompatActivity {
             }
         });
 
+    }
+    private void updateIsLikedInFirestore(RecipeItem recipeItem, boolean isLiked) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference recipesCollection = db.collection("Recepts");
+
+        // Получите id документа рецепта
+        String documentId = recipeItem.getDocumentId();
+
+        // Обновите поле IsLiked в Firestore
+        recipesCollection.document(documentId)
+                .update("IsLiked", isLiked)
+                .addOnSuccessListener(aVoid -> Log.d("TAG", "IsLiked updated successfully"))
+                .addOnFailureListener(e -> Log.e("TAG", "Error updating IsLiked", e));
     }
 
     private void addToSecondRecyclerView(RecipeItem recipeItem) {
