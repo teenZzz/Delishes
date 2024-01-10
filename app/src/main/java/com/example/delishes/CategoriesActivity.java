@@ -44,7 +44,7 @@ public class CategoriesActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         List<RecipeItem> recipeItems = new ArrayList<>();
-        adapter = new RecycAdapter(recipeItems);
+        adapter = new RecycAdapter(recipeItems, true);
         recyclerView.setAdapter(adapter);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference recipesCollection = db.collection("Recepts");

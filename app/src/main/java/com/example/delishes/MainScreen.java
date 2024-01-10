@@ -45,19 +45,18 @@ public class MainScreen extends AppCompatActivity {
         binding = ActivityMainScreenBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        setSupportActionBar(binding.topAppBar);
 
         RecyclerView recyclerView = binding.allrecept;
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         List<RecipeItem> recipeItems = new ArrayList<>();
-        adapter = new RecycAdapter(recipeItems);
+        adapter = new RecycAdapter(recipeItems, false);
         recyclerView.setAdapter(adapter);
 
         RecyclerView loveReceptRecyclerView = binding.loverecept;
         LinearLayoutManager loveReceptLayoutManager = new LinearLayoutManager(this);
         loveReceptRecyclerView.setLayoutManager(loveReceptLayoutManager);
-        loveReceptAdapter = new RecycAdapter(new ArrayList<>());
+        loveReceptAdapter = new RecycAdapter(new ArrayList<>(), true);
         loveReceptRecyclerView.setAdapter(loveReceptAdapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -103,6 +102,15 @@ public class MainScreen extends AppCompatActivity {
             intent.putExtra("receptText", selectedRecipe.getReceptText());
             startActivity(intent);
         });
+        loveReceptAdapter.setOnItemClickListener(position -> {
+            RecipeItem selectedRecipe = likedRecipes.get(position);
+
+            Intent intent = new Intent(MainScreen.this, ReceptDetailActivity.class);
+            intent.putExtra("text", selectedRecipe.getText());
+            intent.putExtra("imageUrl", selectedRecipe.getImageUrl());
+            intent.putExtra("receptText", selectedRecipe.getReceptText());
+            startActivity(intent);
+        });
 
         adapter.setOnLikeButtonClickListener((position, isLiked) -> {
             RecipeItem recipeItem = recipeItems.get(position);
@@ -135,7 +143,6 @@ public class MainScreen extends AppCompatActivity {
         });
 
         setSupportActionBar(binding.topAppBar);
-
         NavigationView navigationView = findViewById(R.id.navigationView);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -165,8 +172,6 @@ public class MainScreen extends AppCompatActivity {
         }
 
         Intent intent1 = new Intent(this, AllReceptActivity.class);
-        Intent intent4 = new Intent(this, loveReceptActivity.class);
-
         binding.saladCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,17 +208,10 @@ public class MainScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         binding.viewAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent1);
-            }
-        });
-        binding.viewAllBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(intent4);
             }
         });
 

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageButton;
 
 import com.example.delishes.databinding.ActivityAllReceptBinding;
 import com.example.delishes.databinding.ActivityCategoriesBinding;
@@ -27,8 +28,7 @@ public class AllReceptActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_all_recept);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         binding = ActivityAllReceptBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
@@ -38,7 +38,7 @@ public class AllReceptActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         List<RecipeItem> recipeItems = new ArrayList<>();
-        adapter = new RecycAdapter(recipeItems);
+        adapter = new RecycAdapter(recipeItems, true); // Указываем true для скрытия кнопки
         recyclerView.setAdapter(adapter);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -51,7 +51,9 @@ public class AllReceptActivity extends AppCompatActivity {
                     String imageUrl = document.getString("Image");
                     String receptText = document.getString("ReceptText");
 
+
                     receptText = receptText.replace("\\n", System.getProperty("line.separator"));
+
 
                     Log.d("TAG", "Text: " + text + ", ImageUrl: " + imageUrl);
                     recipeItems.add(new RecipeItem(text, imageUrl, receptText));
@@ -59,6 +61,7 @@ public class AllReceptActivity extends AppCompatActivity {
 
                 // Уведомляем адаптер об изменениях после получения данных
                 adapter.notifyDataSetChanged();
+
             } else {
                 Log.e("TAG", "Error getting documents: ", task.getException());
             }
@@ -85,4 +88,6 @@ public class AllReceptActivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

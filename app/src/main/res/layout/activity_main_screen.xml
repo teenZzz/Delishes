@@ -9,268 +9,262 @@
     android:orientation="vertical"
     tools:context=".MainScreen">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f2f5f8"
-        android:orientation="vertical">
-
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/topAppBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="?attr/actionBarSize"
-                app:title="@string/mainscreenlogo"
-                app:menu="@menu/top_app_bar"/>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="wrap_content">
-
-
-            <androidx.appcompat.widget.SearchView
-                android:id="@+id/searchView"
-                android:background="@drawable/search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="40dp"
-                android:layout_marginBottom="10dp"
-                app:iconifiedByDefault="false"
-                app:queryHint="@string/searchtext" />
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f2f5f8"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="?attr/actionBarSize"
+                    app:title="@string/mainscreenlogo"
+                    app:menu="@menu/top_app_bar"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:background="@drawable/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginBottom="10dp"
+                    app:iconifiedByDefault="false"
+                    app:queryHint="@string/searchtext" />
+
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-
-                    android:background="@drawable/card1"
-                    android:elevation="8dp">
-
-                    <ImageView
-                        android:id="@+id/saladCat"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ico_salad" />
-
-                </RelativeLayout>
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/saladtext"
-                    android:textAlignment="center" />
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+
+                        android:background="@drawable/card1"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/saladCat"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ico_salad" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/saladtext"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/card2"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/delishCat"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ico_snacks" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/snackstext"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/card3"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/hotCat"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ico_maindish" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/hottext"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/card4"
+                        android:elevation="8dp">
+
+                        <ImageView
+                            android:id="@+id/soupCat"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ico_soup" />
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/souptext"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/card2"
-                    android:elevation="8dp">
-
-                    <ImageView
-                        android:id="@+id/delishCat"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ico_snacks" />
-
-                </RelativeLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/snackstext"
-                    android:textAlignment="center" />
 
-            </LinearLayout>
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/card3"
-                    android:elevation="8dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:layout_marginTop="30dp">
 
-                    <ImageView
-                        android:id="@+id/hotCat"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ico_maindish" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                </RelativeLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/almendra"
+                                android:text="@string/allRecept"
+                                android:textColor="#272727"
+                                android:textSize="20sp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/viewAll"
+                                android:id="@+id/viewAll_btn"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"/>
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/hottext"
-                    android:textAlignment="center" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/allrecept"
+                            android:layout_width="match_parent"
+                            android:layout_height="330dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#80F1F1F1" />
+                    </LinearLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:orientation="vertical"
+                        android:padding="20dp"
+                        android:layout_marginTop="30dp">
 
-                <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/card4"
-                    android:elevation="8dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                    <ImageView
-                        android:id="@+id/soupCat"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ico_soup" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/almendra"
+                                android:text="@string/loveRecept"
+                                android:textColor="#272727"
+                                android:textSize="20sp"/>
 
-                </RelativeLayout>
+                        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/souptext"
-                    android:textAlignment="center" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="5dp"
+                            android:layout_height="330dp"
+                            android:id="@+id/loverecept"
+                            android:background="#80F1F1F1" />
+                    </LinearLayout>
 
-            </LinearLayout>
+                </LinearLayout>
 
 
         </LinearLayout>
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    android:layout_marginTop="30dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/almendra"
-                            android:text="@string/allRecept"
-                            android:textColor="#272727"
-                            android:textSize="20sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/viewAll"
-                            android:id="@+id/viewAll_btn"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"/>
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/allrecept"
-                        android:layout_width="match_parent"
-                        android:layout_height="330dp"
-                        android:layout_marginTop="5dp"
-                        android:background="#80F1F1F1" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:orientation="vertical"
-                    android:padding="20dp"
-                    android:layout_marginTop="30dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/almendra"
-                            android:text="@string/loveRecept"
-                            android:textColor="#272727"
-                            android:textSize="20sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/viewAll"
-                            android:id="@+id/viewAll_btn2"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"/>
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_height="330dp"
-                        android:id="@+id/loverecept"
-                        android:background="#80F1F1F1" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
-
-
-
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

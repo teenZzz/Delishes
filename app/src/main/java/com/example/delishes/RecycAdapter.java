@@ -25,11 +25,13 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> {
 
     private List<RecipeItem> data;
+    private boolean hideLikeButton = false;
     private OnItemClickListener onItemClickListener;
     private OnLikeButtonClickListener onLikeButtonClickListener;
 
-    public RecycAdapter(List<RecipeItem> data) {
+    public RecycAdapter(List<RecipeItem> data, boolean hideLikeButton) {
         this.data = data;
+        this.hideLikeButton = hideLikeButton;
     }
 
     public interface OnItemClickListener {
@@ -47,6 +49,7 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
     public void setOnLikeButtonClickListener(OnLikeButtonClickListener listener) {
         onLikeButtonClickListener = listener;
     }
+
 
     public void setData(List<RecipeItem> newData) {
         data.clear();
@@ -79,6 +82,17 @@ public class RecycAdapter extends RecyclerView.Adapter<RecycAdapter.ViewHolder> 
             holder.likeButton.setColorFilter(Color.RED);
         } else {
             holder.likeButton.clearColorFilter(); // Очищаем цвет фильтра
+        }
+
+        if (hideLikeButton) {
+            holder.likeButton.setVisibility(View.GONE);
+        } else {
+            holder.likeButton.setVisibility(View.VISIBLE);
+            if (item.isLiked()) {
+                holder.likeButton.setColorFilter(Color.RED);
+            } else {
+                holder.likeButton.clearColorFilter();
+            }
         }
 
         holder.itemView.setOnClickListener(view -> {
