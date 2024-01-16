@@ -248,14 +248,22 @@ public class MainScreen extends AppCompatActivity {
     }
 
     private void performSearch(String query) {
-        List<RecipeItem> filteredList = new ArrayList<>();
+        List<RecipeItem> filteredListAll = new ArrayList<>();
+        List<RecipeItem> filteredListLiked = new ArrayList<>();
 
         for (RecipeItem recipe : originalRecipeItems) {
             if (recipe.getText().toLowerCase().contains(query.toLowerCase())) {
-                filteredList.add(recipe);
+                filteredListAll.add(recipe);
+
+                // Проверяем, является ли рецепт избранным
+                if (recipe.isLiked()) {
+                    filteredListLiked.add(recipe);
+                }
             }
         }
 
-        adapter.setData(filteredList);
+        // Обновляем данные в обоих RecyclerView
+        adapter.setData(filteredListAll);
+        loveReceptAdapter.setData(filteredListLiked);
     }
 }
